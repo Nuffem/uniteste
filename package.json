@@ -1,0 +1,15 @@
+{
+  "name": "projeto-0",
+  "version": "1.0.0",
+  "description": "Um projeto de exemplo com testes na linguagem 0",
+  "main": "teste.0",
+  "scripts": {
+    "test": "node_modules/.bin/0 teste.0"
+  },
+  "keywords": [
+    "linguagem0",
+    "testes"
+  ],
+  "author": "",
+  "license": "ISC"
+}

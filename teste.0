@@ -1,0 +1,63 @@
+// teste.0
+
+// Importar a biblioteca uniteste
+uniteste # ./uniteste.0
+
+// Extrair as funções da biblioteca para facilitar o uso
+descrever = uniteste.descrever
+testar = uniteste.testar
+igual = uniteste.igual
+naoIgual = uniteste.naoIgual
+verdadeiro = uniteste.verdadeiro
+falso = uniteste.falso
+relatorio_final = uniteste.relatorio_final
+
+// Início da suíte de testes
+descrever("Suíte de Testes de Exemplo" () => (
+  descrever("Testes de Aritmética" () => (
+    testar("1 + 1 deve ser igual a 2" () => (
+      igual(2 (1 + 1))
+    ))
+
+    testar("2 * 3 deve ser igual a 6" () => (
+      igual(6 (2 * 3))
+    ))
+
+    testar("5 - 2 deve ser diferente de 4" () => (
+      naoIgual(4 (5 - 2))
+    ))
+  ))
+
+  descrever("Testes de Lógica" () => (
+    testar("Verdadeiro deve ser verdadeiro" () => (
+      verdadeiro(1)
+    ))
+
+    testar("Falso deve ser falso" () => (
+      falso(0)
+    ))
+
+    testar("Não verdadeiro deve ser falso" () => (
+      falso(!1)
+    ))
+
+    testar("Não falso deve ser verdadeiro" () => (
+      verdadeiro(!0)
+    ))
+  ))
+
+  descrever("Testes de Comparação" () => (
+    testar("5 deve ser maior que 3" () => (
+      verdadeiro(5 > 3)
+    ))
+    testar("3 deve ser menor que 5" () => (
+      verdadeiro(3 < 5)
+    ))
+    testar("4 deve ser igual a 4" () => (
+      igual(1 (4 == 4))) // Comparação retorna 1 para verdadeiro
+    ))
+  ))
+))
+
+// Exibir o relatório final dos testes
+relatorio_final()
