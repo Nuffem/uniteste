@@ -1,4 +1,4 @@
 {
   descrever: título resultado => [resultado[0] `${título} | ${resultado[1]}`]
-  iguais: valor1 valor2 => valor1 == valor2 ? [0 "ok"] : [1 `Esperava que ${valor1} fosse igual a ${valor2}.`]
+  iguais: valor1 valor2 => valor1 == valor2 ? [0 "ok"] : [1 `Esperava que ${"" + valor1} fosse igual a ${"" + valor2}.`]
 }
