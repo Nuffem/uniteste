@@ -8,27 +8,35 @@ juntar = lista delimitador =>
   lista[.] == 1 ? lista[0] :
   `${lista[0]}${delimitador}${juntar(lista[1:] delimitador)}`
 
-principal = testes =>
-  testes[.] == 0 ? [0 ""] :
-  testes[.] == 1 ? [testes[0][0] juntar(testes[0][1] 10)] :
-  (
-    resultado1 = principal([testes[0]])
-    resultado2 = principal(testes[1:])
-    [
-      resultado1[0] + resultado2[0]
-      juntar([
-        resultado1[1]
-        resultado2[1]
-      ] 10)
-    ]
-  )
+principal = testes => (
+  principal_preparado =
+    testes[.] == 0 ? [0 "" 0] :
+    testes[.] == 1 ? [testes[0][0] juntar(testes[0][1] 10) testes[0][1][.]] :
+    (
+      resultado1 = principal([testes[0]])
+      resultado2 = principal(testes[1:])
+      [
+        resultado1[0] + resultado2[0]
+        juntar([
+          resultado1[1]
+          resultado2[1]
+        ] 10)
+        resultado1[2] + resultado2[2]
+      ]
+    )
+  [principal_preparado[0] juntar([
+    principal_preparado[1]
+    `Total de testes: ${"" + principal_preparado[2]}`
+    `Falharam: ${"" + principal_preparado[0]}`
+  ] 10)]
+)
 
 descrever = título testes =>
   testes[.] == 0 ? [0 []] :
   testes[.] == 1 ? [testes[0][0] mapear(testes[0][1] mensagem => `${título} | ${mensagem}`)] :
   testes[.] == 2 ? descrever(título [
     [
-      testes[0][0] >= testes[1][0] ? testes[0][0] : testes[1][0]
+      testes[0][0] + testes[1][0]
       [
         ...testes[0][1]
         ...testes[1][1]
@@ -39,7 +47,7 @@ descrever = título testes =>
     resultado1 = descrever(título testes[0:2])
     resultado2 = descrever(título testes[2:])
     [
-      resultado1[0] >= resultado2[0] ? resultado1[0] : resultado2[0]
+      resultado1[0] + resultado2[0]
       [
         ...resultado1[1]
         ...resultado2[1]
