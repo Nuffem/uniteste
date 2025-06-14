@@ -8,55 +8,54 @@ juntar = lista delimitador =>
   lista[.] == 1 ? lista[0] :
   `${lista[0]}${delimitador}${juntar(lista[1:] delimitador)}`
 
-principal = testes => (
-  principal_preparado =
-    testes[.] == 0 ? [0 "" 0] :
-    testes[.] == 1 ? [testes[0][0] juntar(testes[0][1] 10) testes[0][1][.]] :
+uniteste = {
+  principal: testes => (
+    principal2 = testes2 =>
+      testes2[.] == 0 ? [0 "" 0] :
+      testes2[.] == 1 ? [testes2[0][0] juntar(testes2[0][1] 10) testes2[0][1][.]] :
+      (
+        resultado1 = principal2([testes2[0]])
+        resultado2 = principal2(testes2[1:])
+        [
+          resultado1[0] + resultado2[0]
+          juntar([
+            resultado1[1]
+            resultado2[1]
+          ] 10)
+          resultado1[2] + resultado2[2]
+        ]
+      )
+    resultado = principal2(testes)
+    [resultado[0] juntar([
+      resultado[1]
+      `Total de testes: ${"" + resultado[2]}`
+      `Falharam: ${"" + resultado[0]}`
+    ] 10)]
+  )
+  descrever: título testes =>
+    testes[.] == 0 ? [0 []] :
+    testes[.] == 1 ? [testes[0][0] mapear(testes[0][1] mensagem => `${título} | ${mensagem}`)] :
+    testes[.] == 2 ? uniteste.descrever(título [
+      [
+        testes[0][0] + testes[1][0]
+        [
+          ...testes[0][1]
+          ...testes[1][1]
+        ]
+      ]
+    ]) :
     (
-      resultado1 = principal([testes[0]])
-      resultado2 = principal(testes[1:])
+      resultado1 = uniteste.descrever(título testes[0:2])
+      resultado2 = uniteste.descrever(título testes[2:])
       [
         resultado1[0] + resultado2[0]
-        juntar([
-          resultado1[1]
-          resultado2[1]
-        ] 10)
-        resultado1[2] + resultado2[2]
+        [
+          ...resultado1[1]
+          ...resultado2[1]
+        ]
       ]
     )
-  [principal_preparado[0] juntar([
-    principal_preparado[1]
-    `Total de testes: ${"" + principal_preparado[2]}`
-    `Falharam: ${"" + principal_preparado[0]}`
-  ] 10)]
-)
-
-descrever = título testes =>
-  testes[.] == 0 ? [0 []] :
-  testes[.] == 1 ? [testes[0][0] mapear(testes[0][1] mensagem => `${título} | ${mensagem}`)] :
-  testes[.] == 2 ? descrever(título [
-    [
-      testes[0][0] + testes[1][0]
-      [
-        ...testes[0][1]
-        ...testes[1][1]
-      ]
-    ]
-  ]) :
-  (
-    resultado1 = descrever(título testes[0:2])
-    resultado2 = descrever(título testes[2:])
-    [
-      resultado1[0] + resultado2[0]
-      [
-        ...resultado1[1]
-        ...resultado2[1]
-      ]
-    ]
-  )
-
-{
-  principal: principal
-  descrever: descrever
   iguais: valor1 valor2 => valor1 == valor2 ? [0 ["ok"]] : [1 [`Esperava que ${"" + valor1} fosse igual a ${"" + valor2}.`]]
 }
+
+uniteste
