@@ -56,6 +56,11 @@ uniteste = {
       ]
     )
   iguais: valor1 valor2 => valor1 == valor2 ? [0 ["ok"]] : [1 [`Esperava que ${"" + valor1} fosse igual a ${"" + valor2}.`]]
+  listas_iguais: lista1 lista2 =>
+    lista1[.] != lista2[.] ? [1 ["Esperava listas iguais."]] :
+    lista1[0] != lista2[0] ? [1 ["Esperava listas iguais."]] :
+    lista1[.] > 1 ? uniteste.listas_iguais(lista1[1:] lista2[1:]) :
+    [0 ["ok"]]
 }
 
 uniteste

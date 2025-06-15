@@ -1,21 +1,25 @@
 uniteste # ./uniteste.0
 
 uniteste.principal([
-  uniteste.descrever("Aritmética" [
-    uniteste.descrever("Adição" [
-      uniteste.iguais((1 + 1) 2)
-      uniteste.iguais((2 + 3) 5)
-      uniteste.iguais((4 + 8) 12)
-    ])
-    uniteste.descrever("Subtração" [
-      uniteste.iguais((5 - 3) 2)
-      uniteste.iguais((8 - 2) 6)
-    ])
+  uniteste.descrever("Iguais" [
+    uniteste.iguais(5 5)
+    uniteste.iguais("abc" "abc")
   ])
-  uniteste.descrever("Operadores lógicos" [
-    uniteste.descrever("Não" [
-      uniteste.iguais((! 0) 1)
-      uniteste.iguais((! 1) 0)
-    ])
+  uniteste.descrever("Listas iguais" [
+    uniteste.iguais(
+      uniteste.listas_iguais([1 2 3] [1 2])[0]
+      1
+    )
+    uniteste.iguais(
+      uniteste.listas_iguais([6] [7])[0]
+      1
+    )
+    uniteste.iguais(
+      uniteste.listas_iguais([1 2 3] [1 2 4])[0]
+      1
+    )
+    uniteste.listas_iguais([] [])
+    uniteste.listas_iguais([6] [6])
+    uniteste.listas_iguais([2 3 4] [2 3 4])
   ])
 ])
