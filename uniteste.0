@@ -1,24 +1,16 @@
-mapear = lista mapeador =>
-  lista[.] == 0 ? [] :
-  lista[.] == 1 ? [mapeador(lista[0])] :
-  [mapeador(lista[0]) ...mapear(lista[1:] mapeador)]
-
-juntar = lista delimitador =>
-  lista[.] == 0 ? "" :
-  lista[.] == 1 ? lista[0] :
-  `${lista[0]}${delimitador}${juntar(lista[1:] delimitador)}`
+lista # https://raw.githubusercontent.com/Nuffem/lista.0/0a20c969c400d2d09904f92b2082783da8e8c32b/lista.0
 
 uniteste = {
   principal: testes => (
     principal2 = testes2 =>
       testes2[.] == 0 ? [0 "" 0] :
-      testes2[.] == 1 ? [testes2[0][0] juntar(testes2[0][1] 10) testes2[0][1][.]] :
+      testes2[.] == 1 ? [testes2[0][0] lista.juntar(testes2[0][1] 10) testes2[0][1][.]] :
       (
         resultado1 = principal2([testes2[0]])
         resultado2 = principal2(testes2[1:])
         [
           resultado1[0] + resultado2[0]
-          juntar([
+          lista.juntar([
             resultado1[1]
             resultado2[1]
           ] 10)
@@ -26,7 +18,7 @@ uniteste = {
         ]
       )
     resultado = principal2(testes)
-    [resultado[0] juntar([
+    [resultado[0] lista.juntar([
       resultado[1]
       `Total de testes: ${"" + resultado[2]}`
       `Falharam: ${"" + resultado[0]}`
@@ -34,7 +26,7 @@ uniteste = {
   )
   descrever: título testes =>
     testes[.] == 0 ? [0 []] :
-    testes[.] == 1 ? [testes[0][0] mapear(testes[0][1] mensagem => `${título} | ${mensagem}`)] :
+    testes[.] == 1 ? [testes[0][0] lista.mapear(testes[0][1] mensagem => `${título} | ${mensagem}`)] :
     testes[.] == 2 ? uniteste.descrever(título [
       [
         testes[0][0] + testes[1][0]
