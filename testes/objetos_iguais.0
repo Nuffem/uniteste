@@ -18,6 +18,14 @@ uniteste.descrever("Objetos iguais" [
     1
   )
   uniteste.iguais(
+    uniteste.objetos_iguais({a: 1 b: 2} {c: 1 b: 2})[0]
+    1
+  )
+  uniteste.iguais(
+    uniteste.objetos_iguais({a: 1 b: 2} {a: 3 b: 2})[0]
+    1
+  )
+  uniteste.iguais(
     uniteste.objetos_iguais({a: 1 b: 2} {a: 1 c: 2})[0]
     1
   )

@@ -57,11 +57,10 @@ uniteste = {
     objeto1[*][.] != objeto2[*][.] ? [1 ["Esperava objetos iguais."]] :
     objeto1[*][.] == 0 ? [0 ["ok"]] : (
       objetos_iguais2 = atributos1 atributos2 =>
-        atributos1[.] == 1 ?
-          atributos1[0] != atributos2[0] ? [1 ["Esperava objetos iguais."]] :
-          objeto1[atributos1[0]] != objeto2[atributos2[0]] ? [1 ["Esperava objetos iguais."]] :
-          [0 ["ok"]] :
-        objetos_iguais2(atributos1[1:] atributos2[1:])
+        atributos1[0] != atributos2[0] ? [1 ["Esperava objetos iguais."]] :
+        objeto1[atributos1[0]] != objeto2[atributos2[0]] ? [1 ["Esperava objetos iguais."]] :
+        atributos1[.] > 1 ? objetos_iguais2(atributos1[1:] atributos2[1:]) :
+        [0 ["ok"]]
       objetos_iguais2(objeto1[*] objeto2[*])
     )
 }
