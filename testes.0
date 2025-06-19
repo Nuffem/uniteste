@@ -1,25 +1,10 @@
 uniteste # ./uniteste.0
+iguais # testes/iguais.0
+listas_iguais # testes/listas_iguais.0
+objetos_iguais # testes/objetos_iguais.0
 
 uniteste.principal([
-  uniteste.descrever("Iguais" [
-    uniteste.iguais(5 5)
-    uniteste.iguais("abc" "abc")
-  ])
-  uniteste.descrever("Listas iguais" [
-    uniteste.iguais(
-      uniteste.listas_iguais([1 2 3] [1 2])[0]
-      1
-    )
-    uniteste.iguais(
-      uniteste.listas_iguais([6] [7])[0]
-      1
-    )
-    uniteste.iguais(
-      uniteste.listas_iguais([1 2 3] [1 2 4])[0]
-      1
-    )
-    uniteste.listas_iguais([] [])
-    uniteste.listas_iguais([6] [6])
-    uniteste.listas_iguais([2 3 4] [2 3 4])
-  ])
+  iguais
+  listas_iguais
+  objetos_iguais
 ])

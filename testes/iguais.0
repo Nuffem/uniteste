@@ -1,0 +1,6 @@
+uniteste # ../uniteste.0
+
+uniteste.descrever("Iguais" [
+  uniteste.iguais(5 5)
+  uniteste.iguais("abc" "abc")
+])

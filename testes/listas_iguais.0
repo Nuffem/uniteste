@@ -1,0 +1,19 @@
+uniteste # ../uniteste.0
+
+uniteste.descrever("Listas iguais" [
+  uniteste.iguais(
+    uniteste.listas_iguais([1 2 3] [1 2])[0]
+    1
+  )
+  uniteste.iguais(
+    uniteste.listas_iguais([6] [7])[0]
+    1
+  )
+  uniteste.iguais(
+    uniteste.listas_iguais([1 2 3] [1 2 4])[0]
+    1
+  )
+  uniteste.listas_iguais([] [])
+  uniteste.listas_iguais([6] [6])
+  uniteste.listas_iguais([2 3 4] [2 3 4])
+])
