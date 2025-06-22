@@ -1,4 +1,4 @@
-lista # https://raw.githubusercontent.com/Nuffem/lista.0/0a20c969c400d2d09904f92b2082783da8e8c32b/lista.0
+lista # https://raw.githubusercontent.com/Nuffem/lista/0a20c969c400d2d09904f92b2082783da8e8c32b/lista.0
 
 uniteste = {
   principal: testes => (
