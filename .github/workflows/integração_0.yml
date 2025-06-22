@@ -21,4 +21,4 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Clonar interpretador 0
       run: git clone https://github.com/nuffem/0
-    - run: node 0/0_cli.js testes/0
+    - run: node 0/0_node.js testes/0
