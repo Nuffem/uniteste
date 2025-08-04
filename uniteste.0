@@ -1,68 +1,64 @@
 lista # https://raw.githubusercontent.com/Nuffem/lista/0a20c969c400d2d09904f92b2082783da8e8c32b/lista.0
 
+lista_reduzir = lista_original redutor =>
+  lista_original[.] == 1 ?
+    lista_original[0] :
+  lista_original[.] == 2 ?
+    redutor(lista_original[0] lista_original[1]) :
+  lista_reduzir([
+    redutor(lista_original[0] lista_original[1])
+    ...lista_original[2:]
+  ] redutor)
+
+lista_planificar = lista_original =>
+  lista_original[.] == 0 ?
+    [] :
+  [...lista_original[0] ...lista_planificar(lista_original[1:])]
+
 uniteste = {
-  principal: testes => (
-    principal2 = testes2 =>
-      testes2[.] == 0 ? [0 "" 0] :
-      testes2[.] == 1 ? [testes2[0][0] lista.juntar(testes2[0][1] 10) testes2[0][1][.]] :
-      (
-        resultado1 = principal2([testes2[0]])
-        resultado2 = principal2(testes2[1:])
-        [
-          resultado1[0] + resultado2[0]
-          lista.juntar([
-            resultado1[1]
-            resultado2[1]
-          ] 10)
-          resultado1[2] + resultado2[2]
-        ]
-      )
-    resultado = principal2(testes)
-    [resultado[0] lista.juntar([
-      resultado[1]
-      `Total de testes: ${"" + resultado[2]}`
-      `Falharam: ${"" + resultado[0]}`
-    ] 10)]
-  )
-  descrever: título testes =>
-    testes[.] == 0 ? [0 []] :
-    testes[.] == 1 ? [testes[0][0] lista.mapear(testes[0][1] mensagem => `${título} | ${mensagem}`)] :
-    testes[.] == 2 ? uniteste.descrever(título [
-      [
-        testes[0][0] + testes[1][0]
-        [
-          ...testes[0][1]
-          ...testes[1][1]
-        ]
-      ]
-    ]) :
+  descrever: título testes => () =>
     (
-      resultado1 = uniteste.descrever(título testes[0:2])
-      resultado2 = uniteste.descrever(título testes[2:])
+      mensagens = lista.mapear(
+        lista_planificar(
+          lista.mapear(
+            testes,
+            teste => (
+              resultado = teste()
+              resultado[0:resultado[.] - 2]
+            )
+          )
+        )
+        mensagem => [4 `${título} | ${mensagem[1]}`]
+      )
+      passaram = lista_reduzir(
+        lista.mapear(testes, teste => (
+          resultado = teste()
+          resultado[resultado[.] - 1][2]
+        ))
+        valor_1 valor_2 => valor_1 + valor_2
+      )
       [
-        resultado1[0] + resultado2[0]
+        ...mensagens
+        [4 `${"" + passaram}/${"" + mensagens[.]} testes passaram.`]
         [
-          ...resultado1[1]
-          ...resultado2[1]
+          3
+          passaram == mensagens[.] ? 0 : 1
+          passaram
         ]
       ]
     )
-  iguais: valor1 valor2 => valor1 == valor2 ? [0 ["ok"]] : [1 [`Esperava que ${"" + valor1} fosse igual a ${"" + valor2}.`]]
-  listas_iguais: lista1 lista2 =>
-    lista1[.] != lista2[.] ? [1 ["Esperava listas iguais."]] :
-    lista1[0] != lista2[0] ? [1 ["Esperava listas iguais."]] :
-    lista1[.] > 1 ? uniteste.listas_iguais(lista1[1:] lista2[1:]) :
-    [0 ["ok"]]
-  objetos_iguais: objeto1 objeto2 =>
-    objeto1[*][.] != objeto2[*][.] ? [1 ["Esperava objetos iguais."]] :
-    objeto1[*][.] == 0 ? [0 ["ok"]] : (
-      objetos_iguais2 = atributos1 atributos2 =>
-        atributos1[0] != atributos2[0] ? [1 ["Esperava objetos iguais."]] :
-        objeto1[atributos1[0]] != objeto2[atributos2[0]] ? [1 ["Esperava objetos iguais."]] :
-        atributos1[.] > 1 ? objetos_iguais2(atributos1[1:] atributos2[1:]) :
-        [0 ["ok"]]
-      objetos_iguais2(objeto1[*] objeto2[*])
-    )
+  iguais: valor1 valor2 => () =>
+    valor1 == valor2 ?
+      [
+        [4 "ok"]
+        [4 "1/1 testes passaram."]
+        [3 0 1]
+      ] :
+      [
+        [4 `Esperava que ${"" + valor1} fosse igual a ${"" + valor2}.`]
+        [4 "0/1 testes passaram."]
+        [3 1 0]
+      ]
 }
 
 uniteste
