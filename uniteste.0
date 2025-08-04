@@ -40,7 +40,11 @@ uniteste = {
       [
         ...mensagens
         [4 `${"" + passaram}/${"" + mensagens[.]} testes passaram.`]
-        [3 1 passaram]
+        [
+          3
+          passaram == mensagens[.] ? 0 : 1
+          passaram
+        ]
       ]
     )
   iguais: valor1 valor2 => () =>
