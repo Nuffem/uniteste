@@ -1,10 +1,6 @@
 uniteste # ../uniteste.0
 iguais # iguais.0
-listas_iguais # listas_iguais.0
-objetos_iguais # objetos_iguais.0
 
-uniteste.principal([
+uniteste.descrever("Uniteste" [
   iguais
-  listas_iguais
-  objetos_iguais
 ])
