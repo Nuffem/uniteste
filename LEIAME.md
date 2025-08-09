@@ -95,20 +95,24 @@ Neste exemplo:
 
 ## Executando os Testes
 
-O arquivo `teste.0` no repositório demonstra como os testes podem ser executados. Ele importa `uniteste.0` e depois chama `uniteste.principal` com uma série de testes definidos.
+Para executar os testes, é necessário ter o interpretador da linguagem 0, que está disponível no repositório [github.com/Nuffem/0](https://github.com/Nuffem/0). O arquivo do interpretador é o `0_node.js`.
 
-Para executar arquivos de script `.0`, como `teste.0`, você pode utilizar o interpretador de referência da linguagem `.0` disponível em [github.com/nuffem/0/0.js](https://github.com/nuffem/0/0.js). Este interpretador pode ser executado com Node.js.
+Assumindo que o repositório foi clonado no diretório `./0`, você pode executar os testes da seguinte forma:
 
-Assumindo que você tenha o Node.js instalado e o `0.js` baixado:
+### Executar todos os testes
 
-1.  **Baixe o interpretador**:
-    Faça o download do arquivo `0.js` do repositório [github.com/nuffem/0](https://github.com/nuffem/0).
+Para executar todos os arquivos de teste localizados no diretório `testes/`, utilize o seguinte comando:
 
-2.  **Execute seu arquivo de teste**:
-    Use o Node.js para executar o interpretador `0.js`, passando seu arquivo de teste como argumento. Por exemplo, para executar `teste.0`:
+```sh
+node 0/0_node.js testes/0
+```
 
-    ```sh
-    node 0.js teste.0
-    ```
+### Executar um teste específico
 
-O interpretador executará o script `teste.0`. Como o script `teste.0` retorna o resultado de `uniteste.principal`, a saída do comando `node 0.js teste.0` será a representação em string da lista de resultados dos testes, incluindo o número de falhas, os detalhes e o total de testes.
+Para executar um único arquivo de teste, forneça o caminho para o arquivo de teste específico. Por exemplo, para executar `testes/iguais.0`:
+
+```sh
+node 0/0_node.js testes/iguais.0
+```
+
+O interpretador executará o script de teste e exibirá os resultados, incluindo o número de falhas, detalhes dos testes e o total de testes executados.
