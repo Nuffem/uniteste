@@ -1,6 +1,6 @@
-uniteste # ../uniteste.0
+uniteste # ../código/0
 
-uniteste.descrever("Iguais" [
-  uniteste.iguais(5 5)
-  uniteste.iguais("abc" "abc")
-])
+uniteste.descrever({"Iguais" {
+  uniteste.iguais({5 5})
+  uniteste.iguais({"abc" "abc"})
+}})
