@@ -10,7 +10,7 @@ jobs:
     - uses: actions/checkout@v4
       with:
         repository: nuffem/0
-        ref: 78f0d5b771ac6d5676accef24b7193a2c1349931
+        ref: 846ac253945041d5d797509d2a8c7c91e0a9fb52
         path: "./0"
     - uses: actions/setup-node@v4
       with:
