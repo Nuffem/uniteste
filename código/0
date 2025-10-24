@@ -1,4 +1,4 @@
-lista # https://cdn.jsdelivr.net/gh/angelonuffer/lista@f8c5dc040d06f0659f1d6b057a77631b7aed1ac2/código/lista.0
+_lista # https://cdn.jsdelivr.net/gh/angelonuffer/lista@2efb5d2699ae928fc7d2b29be6783ae06670415a/código/0
 processo # https://cdn.jsdelivr.net/gh/angelonuffer/processo@28301145e902c160e4e8037953ab6b0483270c94/código/0
 
 compara_listas = { lista_1 lista_2 } =>
@@ -16,9 +16,9 @@ compara_listas = { lista_1 lista_2 } =>
 
 exibir = resultado => processo.nodejs({
   comandos: [
-    ...lista.mapear({
-      resultado.mensagens
-      mensagem => processo.escreva({
+    ..._lista.mapear({
+      lista: resultado.mensagens
+      função: mensagem => processo.escreva({
         texto: mensagem
       })
     })
@@ -42,24 +42,26 @@ exibir = resultado => processo.nodejs({
       nome: args[0]
       resultados: args[1]
       resultado: {
-        passaram: lista.reduzir({
-          lista.mapear({
-            resultados
-            resultado => (resultado("descrever")).passaram
+        passaram: _lista.reduzir({
+          lista: _lista.mapear({
+            lista: resultados
+            função: resultado => (resultado("descrever")).passaram
           })
-          args => args[0] + args[1]
+          função: args => args[0] + args[1]
         })
-        mensagens: lista.planificar(lista.mapear({
-          resultados
-          resultado => lista.mapear({
-            (resultado("descrever")).mensagens
-            mensagem => {
-              nome
-              " | "
-              mensagem
-            } * ""
+        mensagens: _lista.planificar({
+          lista: _lista.mapear({
+            lista: resultados
+            função: resultado => _lista.mapear({
+              lista: (resultado("descrever")).mensagens
+              função: mensagem => {
+                nome
+                " | "
+                mensagem
+              } * ""
+            })
           })
-        }))
+        })
       }
       destino == "descrever" ? resultado : exibir(resultado)
     }[0]
@@ -87,9 +89,9 @@ exibir = resultado => processo.nodejs({
         mensagens: {
           passaram == 1 ? "ok" : {
             "Esperava que {"
-            lista.juntar({args[0] ", "})
+            args[0] * ", "
             "} fosse igual a {"
-            lista.juntar({args[1] ", "})
+            args[1] * ", "
             "}."
           } * ""
         }
