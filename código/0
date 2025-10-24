@@ -1,5 +1,5 @@
 lista # https://cdn.jsdelivr.net/gh/angelonuffer/lista@f8c5dc040d06f0659f1d6b057a77631b7aed1ac2/código/lista.0
-processo # https://cdn.jsdelivr.net/gh/angelonuffer/processo@4e8182fbf4c42a9a03eba17d60063edcbd30bc88/código/0
+processo # https://cdn.jsdelivr.net/gh/angelonuffer/processo@28301145e902c160e4e8037953ab6b0483270c94/código/0
 
 compara_listas = { lista_1 lista_2 } =>
   | lista_1[.] != lista_2[.] = 0
@@ -14,20 +14,29 @@ compara_listas = { lista_1 lista_2 } =>
     })
   )
 
-{
-  exibir: resultado =>
-    processo.nodejs({
-      ...lista.mapear({
-        resultado.mensagens
-        mensagem => processo.escreva(mensagem)
+exibir = resultado => processo.nodejs({
+  comandos: [
+    ...lista.mapear({
+      resultado.mensagens
+      mensagem => processo.escreva({
+        texto: mensagem
       })
-      processo.escreva(resultado.passaram + "/" + resultado.mensagens[.] + " testes passaram.")
-      resultado.passaram == resultado.mensagens[.] ?
-        processo.saia(0)
-      :
-        processo.saia(1)
     })
+    processo.escreva({
+      texto: resultado.passaram + "/" + resultado.mensagens[.] + " testes passaram."
+    })
+    resultado.passaram == resultado.mensagens[.] ?
+      processo.saia({
+        código: 0
+      })
+    :
+      processo.saia({
+        código: 1
+      })
+  ]
+})
 
+{
   uniteste: {
     descrever: args => destino => {
       nome: args[0]
