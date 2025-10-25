@@ -14,18 +14,18 @@ compara_listas = { lista_1 lista_2 } =>
     })
   )
 
-exibir = resultado => processo.nodejs({
+exibir = { passaram mensagens } => processo.nodejs({
   comandos: [
     ..._lista.mapear({
-      lista: resultado.mensagens
+      lista: mensagens
       função: mensagem => processo.escreva({
         texto: mensagem
       })
     })
     processo.escreva({
-      texto: resultado.passaram + "/" + resultado.mensagens[.] + " testes passaram."
+      texto: passaram + "/" + mensagens[.] + " testes passaram."
     })
-    resultado.passaram == resultado.mensagens[.] ?
+    passaram == mensagens[.] ?
       processo.saia({
         código: 0
       })
