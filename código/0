@@ -38,10 +38,10 @@ exibir = { passaram mensagens } => processo.nodejs({
 
 {
   uniteste: {
-    descrever: args => destino => {
-      nome: args[0]
-      resultados: args[1]
-      resultado: {
+    descrever: args => destino => (
+      nome = args[0]
+      resultados = args[1]
+      resultado = {
         passaram: _lista.reduzir({
           lista: _lista.mapear({
             lista: resultados
@@ -54,40 +54,42 @@ exibir = { passaram mensagens } => processo.nodejs({
             lista: resultados
             função: resultado => _lista.mapear({
               lista: (resultado("descrever")).mensagens
-              função: mensagem => {
+              função: mensagem => [
                 nome
                 " | "
                 mensagem
-              } * ""
+              ] * ""
             })
           })
         })
       }
       destino == "descrever" ? resultado : exibir(resultado)
-    }[0]
-    iguais: args => destino => {
-      resultado: {
-        passaram: args[0] == args[1] ? 1 : 0
-        mensagens: {
-          passaram == 1 ? "ok" : {
+    )
+    iguais: args => destino => (
+      _passaram = args[0] == args[1] ? 1 : 0
+      resultado = {
+        passaram: _passaram
+        mensagens: [
+          _passaram == 1 ? "ok" : [
             "Esperava que "
             "" + args[0]
             " fosse igual a "
             "" + args[1]
             "."
-          } * ""
-        }
+          ] * ""
+        ]
       }
       destino == "descrever" ? resultado : exibir(resultado)
-    }[0]
-    listas_iguais: args => destino => {
-      resultado: {
-        passaram: compara_listas({
-          lista_1: args[0]
-          lista_2: args[1]
-        }) ? 1 : 0
+    )
+    listas_iguais: args => destino => (
+      _passaram = compara_listas({
+        lista_1: args[0]
+        lista_2: args[1]
+      }) ? 1 : 0
+      resultado = {
+        passaram: _passaram
         mensagens: {
-          passaram == 1 ? "ok" : {
+          _passaram == 1 ? "ok" : {
             "Esperava que {"
             args[0] * ", "
             "} fosse igual a {"
@@ -97,6 +99,6 @@ exibir = { passaram mensagens } => processo.nodejs({
         }
       }
       destino == "descrever" ? resultado : exibir(resultado)
-    }[0]
+    )
   }
 }.uniteste
