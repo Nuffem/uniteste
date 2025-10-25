@@ -1,8 +1,11 @@
 uniteste # ../código/0
 
-uniteste.descrever({"Listas Iguais" [
-  uniteste.listas_iguais([ [ 1 2 3 ] [ 1 2 3 ] ])
-  uniteste.listas_iguais([ [ ] [ ] ])
-  uniteste.listas_iguais([ [ "a" "b" "c" ] [ "a" "b" "c" ] ])
-  uniteste.listas_iguais([ [ 1 ] [ 1 ] ])
-]})
+uniteste.descrever({
+  nome: "Listas Iguais"
+  testes: [
+    uniteste.listas_iguais([ [ 1 2 3 ] [ 1 2 3 ] ])
+    uniteste.listas_iguais([ [ ] [ ] ])
+    uniteste.listas_iguais([ [ "a" "b" "c" ] [ "a" "b" "c" ] ])
+    uniteste.listas_iguais([ [ 1 ] [ 1 ] ])
+  ]
+})
