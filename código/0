@@ -85,15 +85,15 @@ exibir = { passaram mensagens } => processo.nodejs({
     }) ? 1 : 0
     resultado = {
       passaram: _passaram
-      mensagens: {
-        _passaram == 1 ? "ok" : {
-          "Esperava que {"
+      mensagens: [
+        _passaram == 1 ? "ok" : [
+          "Esperava que ["
           args[0] * ", "
-          "} fosse igual a {"
+          "] fosse igual a ["
           args[1] * ", "
-          "}."
-        } * ""
-      }
+          "]."
+        ] * ""
+      ]
     }
     destino == "descrever" ? resultado : exibir(resultado)
   )
