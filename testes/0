@@ -1,11 +1,9 @@
-uniteste # ../código/0
-iguais # iguais.0
-listas_iguais # listas_iguais.0
+uniteste = ../código/0
 
 uniteste.descrever({
   nome: "Uniteste"
   testes: [
-    iguais
-    listas_iguais
+    iguais.0
+    listas_iguais.0
   ]
 })

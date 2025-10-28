@@ -1,4 +1,4 @@
-uniteste # ../código/0
+uniteste = ../código/0
 
 uniteste.descrever({
   nome: "Listas Iguais"
